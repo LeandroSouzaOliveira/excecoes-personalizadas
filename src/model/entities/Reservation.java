@@ -2,6 +2,7 @@ package model.entities;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 public class Reservation {
@@ -38,8 +39,8 @@ public class Reservation {
     }
 
     public long duration() {
-        Duration timeDays = Duration.between(checkOut, checkIn);
-        return timeDays.toDays();
+        Period timeDays = Period.between(checkIn, checkOut);
+        return timeDays.getDays();
     }
 
     public void updateDates(LocalDate checkIn, LocalDate checkOut) {
