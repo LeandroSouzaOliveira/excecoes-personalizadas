@@ -1,6 +1,6 @@
 import model.entities.Reservation;
+import model.exceptions.DomainException;
 
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -34,8 +34,11 @@ public class Main {
             reservation.updateDates(checkIn, checkOut);
             System.out.print("Reservation: " + reservation);
         }
-        catch (IllegalArgumentException e) {
+        catch (DomainException e) {
             System.out.println("Error in reservation: " + e.getMessage());
+        }
+        catch (Exception e) {
+            System.out.println("Unexpected error");
         }
         finally {
             sc.close();
